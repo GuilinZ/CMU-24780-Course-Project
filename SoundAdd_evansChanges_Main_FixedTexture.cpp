@@ -38,6 +38,11 @@ void DrawAllMissiles();
 void DrawRect(int blockX, int blockY, int blockSizeX, int blockSizeY); //used for demo health bar
 void DrawCircle(int cx, int cy, int rad, int fill); //used for demo force field
 
+//sound object
+YsSoundPlayer dynamicPlayer;
+YsSoundPlayer::SoundData dynamicWav[7];
+//
+
 int absValue(int i)
 {
     return i < 0 ? -i : i;
@@ -915,6 +920,7 @@ void missileEnemy::checkEnemyCollision(Player& playerObject)
         state = 0;
         playerObject.health--; // player loses 1 hp if hit by a missile
         // player takes a hit - play sound
+        dynamicPlayer.PlayOneShot(dynamicWav[5]);
     }
 }
 
@@ -1040,6 +1046,7 @@ void standardEnemy::checkEnemyCollision(Player& playerObject) {
         state--;
         playerObject.health--; // player loses 1 hp if hit by a missile
         // player takes a hit - play sound
+        //dynamicPlayer.PlayOneShot(dynamicWav[5]);
     }
 }
 
@@ -1064,6 +1071,7 @@ void standardEnemy::Move(Player& playerObject, MissileStandard missileStandard[n
                 if (state == 0) {
                     score+=2;
                     // enemy death - play sound
+                    dynamicPlayer.PlayOneShot(dynamicWav[6]);
                 }
             }
         }
@@ -1076,6 +1084,7 @@ void standardEnemy::Move(Player& playerObject, MissileStandard missileStandard[n
                 if (state == 0) {
                     score+=2;
                     // enemy death - play sound
+                    dynamicPlayer.PlayOneShot(dynamicWav[6]);
                 }
             }
         }
@@ -1088,6 +1097,7 @@ void standardEnemy::Move(Player& playerObject, MissileStandard missileStandard[n
                 if (state == 0) {
                     score+=2;
                     // enemy death - play sound
+                    dynamicPlayer.PlayOneShot(dynamicWav[6]);
                 }
             }
         }
@@ -1100,6 +1110,7 @@ void standardEnemy::Move(Player& playerObject, MissileStandard missileStandard[n
                 if (state == 0) {
                     score+=2;
                     // enemy death - play sound
+                    dynamicPlayer.PlayOneShot(dynamicWav[6]);
                 }
             }
         }
@@ -1112,6 +1123,7 @@ void standardEnemy::Move(Player& playerObject, MissileStandard missileStandard[n
                 if (state == 0) {
                     score+=2;
                     // enemy death - play sound
+                    dynamicPlayer.PlayOneShot(dynamicWav[6]);
                 }
             }
         }
@@ -1247,8 +1259,7 @@ int main() {
     bgPlayer.Start();
     bgPlayer.PlayBackground(bgMusic);
 
-    YsSoundPlayer dynamicPlayer;
-    YsSoundPlayer::SoundData dynamicWav[7];
+
     load_sound(dynamicWav[0], "bullet.wav");
     load_sound(dynamicWav[1], "get_life.wav");
     load_sound(dynamicWav[2], "get_bullet.wav");
@@ -1295,14 +1306,14 @@ int main() {
     player.e.Initialize();
     FsOpenWindow(16, 16, 600, 800, 1);
 
-    FsChangeToProgramDir();
+    //FsChangeToProgramDir();
     YsRawPngDecoder tutorial;
     tutorial.Decode("tutorial.png");
     tutorial.Flip();
 
     png[0].Decode("map.png");
-    png[1].Decode("ep.png");
-    png[2].Decode("boss.png");
+    png[1].Decode("player.png");
+    png[2].Decode("enemy.png");
     png[3].Decode("asteroid.png");
     png[4].Decode("shield.png");
     png[5].Decode("health.png");
@@ -1850,14 +1861,14 @@ int main() {
                 }
             }
 
-            for (int i = 0; i < 7; i++)
-            {
-                while (YSTRUE == dynamicPlayer.IsPlaying(dynamicWav[i]))
-                {
-                    dynamicPlayer.KeepPlaying();
-                }
+            //for (int i = 0; i < 7; i++)
+            //{
+            //    while (YSTRUE == dynamicPlayer.IsPlaying(dynamicWav[i]))
+            //    {
+            //        dynamicPlayer.KeepPlaying();
+            //    }
 
-            }
+            //}
 
             glFlush();
             FsSwapBuffers();

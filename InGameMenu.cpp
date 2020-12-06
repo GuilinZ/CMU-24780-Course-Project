@@ -1,3 +1,5 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 #include "fssimplewindow.h"
 #include "ysglfontdata.h"
 #include <stdio.h>
