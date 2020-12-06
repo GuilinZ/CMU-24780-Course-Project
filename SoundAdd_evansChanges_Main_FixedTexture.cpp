@@ -854,7 +854,7 @@ void Weapons::Draw()
 
 int Weapons::Collide(Player& player)
 {
-    return CheckCollision(player.x, player.y, x, y, 10, 20);
+    return CheckCollision(player.x, player.y, x, y, 25, 25);
 }
 
 
@@ -1041,7 +1041,7 @@ void standardEnemy::generateRandomPath(int startingYLocation)
 }
 
 void standardEnemy::checkEnemyCollision(Player& playerObject) {
-    bool hit = checkCollision(x, y, xSize, ySize, playerObject.x, playerObject.y, 10, 20);
+    bool hit = checkCollision(x, y, xSize, ySize, playerObject.x, playerObject.y, 30, 30);
     if (hit == true) {
         state--;
         playerObject.health--; // player loses 1 hp if hit by a missile
@@ -1189,16 +1189,16 @@ void standardEnemy::Draw()
         glBegin(GL_QUADS);
 
         glTexCoord2d(0.0, 0.0);
-        glVertex2i(x - 27, y - 38);
+        glVertex2i(x - 30, y - 30);
 
         glTexCoord2d(1.0, 0.0);
-        glVertex2i(x + 27, y - 38);
+        glVertex2i(x + 30, y - 30);
 
         glTexCoord2d(1.0, 1.0);
-        glVertex2i(x + 27, y + 38);
+        glVertex2i(x + 30, y + 30);
 
         glTexCoord2d(0.0, 1.0);
-        glVertex2i(x - 27, y + 38);
+        glVertex2i(x - 30, y + 30);
 
         glEnd();
 
@@ -2034,16 +2034,16 @@ void Player::Draw()
     glBegin(GL_QUADS);
 
     glTexCoord2d(0.0, 0.0);
-    glVertex2i(x - 20, y - 14);
+    glVertex2i(x - 25, y - 25);
 
     glTexCoord2d(1.0, 0.0);
-    glVertex2i(x + 20, y - 14);
+    glVertex2i(x + 25, y - 25);
 
     glTexCoord2d(1.0, 1.0);
-    glVertex2i(x + 20, y + 14);
+    glVertex2i(x + 25, y + 25);
 
     glTexCoord2d(0.0, 1.0);
-    glVertex2i(x - 20, y + 14);
+    glVertex2i(x - 25, y + 25);
 
     glEnd();
 
