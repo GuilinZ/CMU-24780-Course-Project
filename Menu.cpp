@@ -56,8 +56,8 @@ int GameMenu::Background(void)
 		glColor3f(1.0, 0, 0);
 
 		//glRasterPos2d(360, 150);
-		glRasterPos2d(250, 150);
-		YsGlDrawFontBitmap20x32("Raiden");
+		glRasterPos2d(150, 150);
+		YsGlDrawFontBitmap20x32("Space Shooter++");
 		//glRasterPos2d(500, 300);
 		glRasterPos2d(400, 400);
 		YsGlDrawFontBitmap16x24("Start");
